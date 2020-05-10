@@ -1,0 +1,17 @@
+theme: minima
+gems:
+  - jekyll-sitemap
+author: Derek Murray
+google_analytics: UA-89610241-1
+
+minima:
+  # generate social links in footer
+  social_links:
+    twitter: mrry
+    github:  mrry
+    stackoverflow: "3574081"
+    linkedin: derekmurray
+
+plugins:
+ - jekyll-feed
+ - jekyll-seo-tag
