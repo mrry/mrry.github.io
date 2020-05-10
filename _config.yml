@@ -1,16 +1,21 @@
-theme: minima
-gems:
-  - jekyll-sitemap
-author: Derek Murray
+title: mrry.github.io
+author: 
+  name: Derek Murray
 google_analytics: UA-89610241-1
 
+show_excerpts: false
+
 minima:
+  date_format: "%b %-d, %Y"
+
   # generate social links in footer
   social_links:
     twitter: mrry
     github:  mrry
     stackoverflow: "3574081"
     linkedin: derekmurray
+
+theme: minima
 
 plugins:
  - jekyll-feed
