@@ -5,7 +5,7 @@ description: Derek Murray's personal site
 
 google_analytics: UA-89610241-1
 
-show_excerpts: false
+show_excerpts: true
 
 twitter_username: mrry
 github_username: mrry
