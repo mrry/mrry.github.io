@@ -3,6 +3,8 @@ title: Publications
 layout: page
 ---
 
+For an exhaustive list of my publications, see [my Google Scholar profile](https://scholar.google.com/citations?hl=en&user=9700p4IAAAAJ).
+
 ## 2019
 
 * [MLSys: The New Frontier of Machine Learning Systems](https://arxiv.org/pdf/1904.03257.pdf)  
