@@ -54,13 +54,13 @@ For an exhaustive list of my publications, see [my Google Scholar profile](https
   In *Proceedings of SOSP 2013*.
   
 * [Differential dataflow](https://cs.uwaterloo.ca/~ssalihog/courses/slides/Chathura-Differential-Dataflow.pdf)  
-  Frank McSherry, Derek G Murray, Rebecca Isaacs, and Michael Isard.  
+  Frank McSherry, Derek G. Murray, Rebecca Isaacs, and Michael Isard.  
   In *Proceedings of CIDR 2013*.
   
 ## 2012
 
 * [The Seven Deadly Sins of Cloud Computing Research](https://www.usenix.org/system/files/conference/hotcloud12/hotcloud12-final70.pdf)  
-  Malte Schwarzkopf, Derek G Murray, and Steven Hand.  
+  Malte Schwarzkopf, Derek G. Murray, and Steven Hand.  
   In *Proceedings of HotCloud 2012*.
   
 ## 2011
@@ -94,7 +94,7 @@ For an exhaustive list of my publications, see [my Google Scholar profile](https
 ## 2009
 
 * [Satori: Enlightened page sharing](https://www.usenix.org/event/usenix09/tech/full_papers/milos/milos_html/)  
-  Grzegorz Miłós, Derek G Murray, Steven Hand, and Michael A Fetterman.  
+  Grzegorz Miłós, Derek G. Murray, Steven Hand, and Michael A Fetterman.  
   In *Proceedings of USENIX ATC 2009*.
   
 ## 2008
@@ -104,5 +104,5 @@ For an exhaustive list of my publications, see [my Google Scholar profile](https
   In *Proceedings of HotDep 2008*.
   
 * [Improving Xen security through disaggregation](https://dl.acm.org/doi/pdf/10.1145/1346256.1346278)  
-  Derek Gordon Murray, Grzegorz Miłós, and Steven Hand.  
+  Derek G. Murray, Grzegorz Miłós, and Steven Hand.  
   In *Proceedings of VEE 2008*.
