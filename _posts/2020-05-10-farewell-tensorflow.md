@@ -40,6 +40,8 @@ Along the way, I relied on a [growing suite of microbenchmarks](https://github.c
 
 The results so far have been pretty encouraging. As days went by, GWP showed the fraction of time spent in `PropagateOutputs()` decrease as users rebuilt their code with the latest version. There were some decent reductions to inference latency, with some users reporting up to a 10% improvement end-to-end.  If you want to try out the new code, the changes will be in the upcoming 2.3 release, or they are available today [on GitHub](https://github.com/tensorflow/tensorflow/) and in [tf-nightly](https://pypi.org/project/tf-nightly/). There are still opportunities to improve things: in particular, it feels like it should be possible to extend the atomic optimization to at least some graphs that have control flow (at least `tf.cond()`, if not `tf.while_loop()`). If you see something that could be done better, I hope you'll consider [submitting a pull request](https://github.com/tensorflow/tensorflow/pulls)!
 
+---
+
 [^1]: Many of these can be found automatically with tools like [`clang-tidy`](https://clang.llvm.org/extra/clang-tidy/).
 
 [^2]: We wrote [a paper](https://dl.acm.org/doi/10.1145/3190508.3190551) about TensorFlow's control flow scheme, but unfortunately it doesn't go into detail about the fine details of efficient executor implementations. With hindsight, we should have evaluated the effect on performance of adding control flow support to graphs without control flow.
