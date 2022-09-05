@@ -40,6 +40,17 @@ Along the way, I relied on a [growing suite of microbenchmarks](https://github.c
 
 The results so far have been pretty encouraging. As days went by, GWP showed the fraction of time spent in `PropagateOutputs()` decrease as users rebuilt their code with the latest version. There were some decent reductions to inference latency, with some users reporting up to a 10% improvement end-to-end.  If you want to try out the new code, the changes will be in the upcoming 2.3 release, or they are available today [on GitHub](https://github.com/tensorflow/tensorflow/) and in [tf-nightly](https://pypi.org/project/tf-nightly/). There are still opportunities to improve things: in particular, it feels like it should be possible to extend the atomic optimization to at least some graphs that have control flow (at least `tf.cond()`, if not `tf.while_loop()`). If you see something that could be done better, I hope you'll consider [submitting a pull request](https://github.com/tensorflow/tensorflow/pulls)!
 
+### Postscript: September 5th, 2022
+
+Apparently I'm not the only one who cares about speeding up TensorFlow's executor! After I picked the low-hanging fruit, two more intrepid engineers have stepped up to optimize the harder, more general executor:
+
+* [Todd Lipcon](https://twitter.com/tlipcon) [figured out how to avoid an exclusive lock for the fast path](https://github.com/tensorflow/tensorflow/commit/a97b0c8ab499b26d2de7226d10a328576b1f0f27), which covers the vast majority of nodes that aren't adjacent to a control-flow merge or trigger node.
+* My old teammate [Xiao Yu](https://github.com/qqfish) went further still and downgraded the exclusive lock in the slow path to a shared lock.
+
+These are much trickier optimizations than the fairly mechanical one I described above, and each would surely make an interesting write-up.
+
+There is still one useful optimization that could apply to the executor, if anyone's interested: when TensorFlow executes a multi-device graph, each per-device subgraph is passed to the slower executor, even when there is no control flow in the graph. In my original change, [I assumed that any `_Recv` node could produce a dead output](https://github.com/tensorflow/tensorflow/blob/05076dcb30cff09396570789ef5a34478cec504b/tensorflow/core/common_runtime/immutable_executor_state.cc#L107-L119), because there was no way to tell locally if the subgraph is nested within some other control flow construct (and left myself a TODO to fix this!). If this information were passed down from the graph partitioner [when control flow is added](https://github.com/tensorflow/tensorflow/blob/05076dcb30cff09396570789ef5a34478cec504b/tensorflow/core/graph/graph_partition.cc#L988-L993) (e.g. by undeprecating [this field in the control message](https://github.com/tensorflow/tensorflow/blob/05076dcb30cff09396570789ef5a34478cec504b/tensorflow/core/protobuf/worker.proto#L130-L133)), the lock-free executor would work for many large partitioned graphs that turn up in multi-device inference or parameter server training (if anyone still does that...).
+
 ---
 
 [^1]: Many of these can be found automatically with tools like [`clang-tidy`](https://clang.llvm.org/extra/clang-tidy/).
